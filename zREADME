@@ -1,0 +1,33 @@
+//This is Employee Management System
+
+First I create laravel new project
+
+I create the database and php migrate
+
+I install filament
+
+I create filament user
+
+I create model for (country, state, city, department and employees)
+
+I create relationship in migrate and also provide the employees data in it migration file 
+
+I create filament RESOURCE
+The resource created all the form for the project 
+--This create [create. edit, list] files
+//php artisan make:filament-resource Country 
+
+
+//php artisan make:filament-resource Country --generate --view
+the -- generate will fill the resoruce php file with the table data
+php artisan make:filament-resource Country --generate --view
+php artisan make:filament-resource State --generate --view
+php artisan make:filament-resource City --generate --view
+php artisan make:filament-resource Department --generate --view
+php artisan make:filament-resource Employee --generate --view
+php artisan make:filament-resource User --generate --view
+
+
+//ERROR
+"Doctrine\DBAL\Driver\AbstractMySQLDriver" not found
+solution: composer require doctrine/dbal
