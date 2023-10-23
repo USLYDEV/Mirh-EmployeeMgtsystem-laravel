@@ -68,7 +68,9 @@ hiiden(!auth()->user()->email === 'admin@example.com')
 visible(!auth()->user()->email === 'admin@example.com')
 //Show department count
 Tables\Columns\TextColumn::make('employee_count') ->counts('employee'),
-
+//This allow us to filter table 
+SelectFilter::make('Department')
+  ->relationship('department', 'name')
 
 //MODEL
 

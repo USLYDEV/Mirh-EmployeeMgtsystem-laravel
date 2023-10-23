@@ -9,6 +9,7 @@ use App\Models\State;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
+use Filament\Resources\Infolist;
 
 use Filament\Resources\Table;
 use Filament\Tables;
@@ -82,6 +83,14 @@ class StateResource extends Resource
             ]);
     }
     
+    public function Infolist($infolist)
+{
+    return $infolist
+        ->schema([
+            // ...
+        ]);
+}
+
     public static function getRelations(): array
     {
         return [
@@ -93,7 +102,8 @@ class StateResource extends Resource
     {
         return [
             'index' => Pages\ListStates::route('/'),
-            // 'create' => Pages\CreateState::route('/create'),
+            // 'create' => Pages\CreateState::route('/create'),+
+            
             // 'view' => Pages\ViewState::route('/{record}'),
             // 'edit' => Pages\EditState::route('/{record}/edit'),
         ];

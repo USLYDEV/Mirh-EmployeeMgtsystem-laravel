@@ -8,11 +8,13 @@ use App\Models\City;
 use App\Models\Employee;
 use App\Models\State;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Get;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
@@ -158,7 +160,9 @@ class EmployeeResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+                SelectFilter::make('Department')
+                ->relationship('department', 'name')
+                ->searchable(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
