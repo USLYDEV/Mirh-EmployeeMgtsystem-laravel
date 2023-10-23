@@ -127,14 +127,15 @@ class EmployeeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('country_id'),
-                Tables\Columns\TextColumn::make('state_id'),
-                Tables\Columns\TextColumn::make('city_id'),
-                Tables\Columns\TextColumn::make('department_id'),
+                Tables\Columns\TextColumn::make('country.name'),
+                Tables\Columns\TextColumn::make('state.name'),
+                Tables\Columns\TextColumn::make('city_name'),
+                Tables\Columns\TextColumn::make('department.name'),
                 Tables\Columns\TextColumn::make('first_name'),
                 Tables\Columns\TextColumn::make('last_name'),
                 Tables\Columns\TextColumn::make('middle_name'),
-                Tables\Columns\TextColumn::make('address'),
+                Tables\Columns\TextColumn::make('address')
+                isTogglehidden,
                 Tables\Columns\TextColumn::make('zip_code'),
                 Tables\Columns\TextColumn::make('date_of_birth')
                     ->date(),
@@ -169,7 +170,7 @@ class EmployeeResource extends Resource
         return [
             'index' => Pages\ListEmployees::route('/'),
             'create' => Pages\CreateEmployee::route('/create'),
-            'view' => Pages\ViewEmployee::route('/{record}'),
+            // 'view' => Pages\ViewEmployee::route('/{record}'),
             'edit' => Pages\EditEmployee::route('/{record}/edit'),
         ];
     }
