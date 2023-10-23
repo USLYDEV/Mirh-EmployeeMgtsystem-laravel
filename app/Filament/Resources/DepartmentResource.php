@@ -43,7 +43,11 @@ class DepartmentResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                 ->searchable(),
+                //Show department count
+                Tables\Columns\TextColumn::make('employee_count')
+                    ->counts('employee'),
                 Tables\Columns\TextColumn::make('created_at')
+                ->toggleable(isToggledHiddenByDefault: true)
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),

@@ -113,6 +113,7 @@ class EmployeeResource extends Resource
                         Forms\Components\DatePicker::make('date_of_birth')
                             // ->native(false)
                             ->displayFormat('d/mm/Y')
+                            
                             ->required(),
                         Forms\Components\DatePicker::make('date_hired')
                          // ->native(false)
@@ -126,22 +127,34 @@ class EmployeeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('country.name'),
-                Tables\Columns\TextColumn::make('state.name'),
-                Tables\Columns\TextColumn::make('city.name'),
-                Tables\Columns\TextColumn::make('department.name'),
-                Tables\Columns\TextColumn::make('first_name'),
+                
+                Tables\Columns\TextColumn::make('first_name')
+                ->sortable()
+                ->searchable(),
                 Tables\Columns\TextColumn::make('last_name'),
-                Tables\Columns\TextColumn::make('middle_name'),
-                Tables\Columns\TextColumn::make('address'),
-                Tables\Columns\TextColumn::make('zip_code'),
+                Tables\Columns\TextColumn::make('middle_name')
+                ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('department.name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('country.name'),
+                Tables\Columns\TextColumn::make('state.name')
+                ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('city.name')
+                ->toggleable(isToggledHiddenByDefault: true),    
+                Tables\Columns\TextColumn::make('address')
+                ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('zip_code')
+                ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('date_of_birth')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->date(),
                 Tables\Columns\TextColumn::make('date_hired')
                     ->date(),
                 Tables\Columns\TextColumn::make('created_at')
+                ->toggleable(isToggledHiddenByDefault: true)
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
+                ->toggleable(isToggledHiddenByDefault: true)
                     ->dateTime(),
             ])
             ->filters([
