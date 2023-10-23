@@ -76,7 +76,7 @@ class EmployeeResource extends Resource
                             ->label('City')
                             ->required(),
                         //Department
-                        Forms\Components\Select::make('department_ID')
+                        Forms\Components\Select::make('department_id')
                             ->relationship('department', 'name')
                             ->searchable()
                             ->preload()
