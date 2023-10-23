@@ -59,7 +59,8 @@ class StateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('country.name'),
+                Tables\Columns\TextColumn::make('country.name')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                 ->label('State Name')
                 ->searchable()
