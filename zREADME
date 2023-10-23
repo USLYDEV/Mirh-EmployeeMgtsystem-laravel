@@ -25,9 +25,44 @@ php artisan make:filament-resource State --generate --view
 php artisan make:filament-resource City --generate --view
 php artisan make:filament-resource Department --generate --view
 php artisan make:filament-resource Employee --generate --view
-php artisan make:filament-resource User --generate --view
+php artisan make:filament-resource User --generate --view --simple --soft-deletes
 
 
 //ERROR
 "Doctrine\DBAL\Driver\AbstractMySQLDriver" not found
 solution: composer require doctrine/dbal
+
+//RELATIONMANAGER ERROR in NAMEresource (Employee)
+//This is use in but does not work for my application--->RELATIONMANAGER
+// ->relationship(name: 'country', TitleAttribute: 'name')
+ //I have to use this--->
+// ->relationship('country', 'name')
+
+//---- Using 
+// ->relationship(name: 'country', TitleAttribute: 'name') 
+will make sure we are getting data from DB 
+
+//Using option instead of relationship
+->option 
+//option will populate information base on selected input, 
+e.g Nigeria->list of state in Nigeria -> Oyo state -> list of city in oyo state
+
+// ----- using auto reload when the form value changes
+->live()
+//This clear the field input when previois field changes
+->afterStateUpdated(fn($set) => $set('city_id', null))
+
+//This make sure that we select option base on previus selection
+   //dependent delection    
+     ->options(fn ($get): Collection => State::query()
+           ->where('country_id', $get('country_id'))
+                                ->pluck('name', 'id'))
+//MODEL
+
+we call this public function for relation to work 
+
+public function department (): BelongsTo
+        {
+            return $this-> belongsTo(Department::class);
+        }
+

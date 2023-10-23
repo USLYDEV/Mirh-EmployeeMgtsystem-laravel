@@ -3,7 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StateResource\Pages;
-use App\Filament\Resources\StateResource\RelationManagers;
+
+use App\Models\Country;
 use App\Models\State;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -31,10 +32,19 @@ class StateResource extends Resource
     {
         return $form
             ->schema([
-                // Forms\Components\Select::make('country_id')
-                // ->relationship(name: 'country', titleAttribute: 'name')
-                // ->required(),     
-                Forms\Components\TextInput::make('country_id')
+                //This bring Item from other input in the DB
+                Forms\Components\Select::make('country_id')
+                //This is use in but does not work for my application--->RELATIONMANAGER
+                // ->relationship(name: 'country', TitleAttribute: 'name')
+                //I have to use this--->
+                // ->relationship('country', 'name')
+                ->relationship('country', 'name')
+                //allow user to seach from list
+                ->searchable()
+                //allow multiple selection
+                // ->multiple()
+                //This dd the se4arch option and also list all the item below
+                ->preload()
                 ->required(),                                      
                 Forms\Components\TextInput::make('name')
                     ->required()
@@ -79,7 +89,7 @@ class StateResource extends Resource
         return [
             'index' => Pages\ListStates::route('/'),
             'create' => Pages\CreateState::route('/create'),
-            'view' => Pages\ViewState::route('/{record}'),
+            // 'view' => Pages\ViewState::route('/{record}'),
             'edit' => Pages\EditState::route('/{record}/edit'),
         ];
     }    

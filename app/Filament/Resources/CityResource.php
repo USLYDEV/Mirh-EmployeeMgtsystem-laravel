@@ -30,12 +30,22 @@ class CityResource extends Resource
     {
         return $form
             ->schema([
-                // Forms\Components\Select::make('state_id')
-                // // This filter error
-                // ->relationship(name: 'state', titleAttribute: 'name')
-                // ->required(), 
-                Forms\Components\TextInput::make('state_id')
-                    ->required(),
+                     //This bring Item from other input in the DB
+                     Forms\Components\Select::make('state_id')
+                     //This is use in but does not work for my application--->RELATIONMANAGER
+                     // ->relationship(name: 'country', TitleAttribute: 'name')
+                     //I have to use this--->
+                     // ->relationship('country', 'name')
+                     ->relationship('state', 'name')
+                     //allow user to seach from list
+                     ->searchable()
+                     //allow multiple selection
+                     // ->multiple()
+                     //This dd the se4arch option and also list all the item below
+                     ->preload()
+                     ->required(), 
+                // Forms\Components\TextInput::make('state_id')
+                //     ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -46,7 +56,7 @@ class CityResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('state_id'),
+                Tables\Columns\TextColumn::make('state.name'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
@@ -77,8 +87,9 @@ class CityResource extends Resource
         return [
             'index' => Pages\ListCities::route('/'),
             'create' => Pages\CreateCity::route('/create'),
-            'view' => Pages\ViewCity::route('/{record}'),
-            'edit' => Pages\EditCity::route('/{record}/edit'),
+            // 'view' => Pages\ViewCity::route('/{record}'),
+            // 'edit' => Pages\EditCity::route('/{record}/edit'),
+            
         ];
     }    
 }

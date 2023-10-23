@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Filament\Resources;
-
 use App\Filament\Resources\CountryResource\Pages;
-use App\Filament\Resources\CountryResource\RelationManagers;
 use App\Models\Country;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -28,6 +26,7 @@ class CountryResource extends Resource
     protected static ?int $navigationSort = 1;
 
 
+
     public static function form(Form $form): Form
     {
         return $form
@@ -35,7 +34,18 @@ class CountryResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                    Forms\Components\TextInput::make('code')
+                    ->required()
+                    ->maxLength(3),
+                    Forms\Components\TextInput::make('phonecode')
+                    ->required()
+                    ->numeric()
+                    ->maxLength(6),
+                    
+
+
             ]);
+            
     }
 
     public static function table(Table $table): Table
@@ -43,6 +53,8 @@ class CountryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('code'),
+                Tables\Columns\TextColumn::make('phonecode'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -72,7 +84,7 @@ class CountryResource extends Resource
         return [
             'index' => Pages\ListCountries::route('/'),
             'create' => Pages\CreateCountry::route('/create'),
-            'view' => Pages\ViewCountry::route('/{record}'),
+            // 'view' => Pages\ViewCountry::route('/{record}'),
             'edit' => Pages\EditCountry::route('/{record}/edit'),
         ];
     }    
