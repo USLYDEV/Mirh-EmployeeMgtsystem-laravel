@@ -9,6 +9,7 @@ use App\Models\State;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
+
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
@@ -58,8 +59,10 @@ class StateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('Country_id'),
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('country.name'),
+                Tables\Columns\TextColumn::make('name')
+                ->label('State Name')
+                ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')

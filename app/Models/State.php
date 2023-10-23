@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Filament\Resources\CountryResource;
+// use App\Filament\Resources\CountryResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,8 +12,11 @@ class State extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 
-        'country_id'];
+       
+        'country_id',
+        'name' ];
+
+    
 
         public function country (): BelongsTo
         {

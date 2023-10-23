@@ -9,7 +9,6 @@ use App\Models\Employee;
 use App\Models\State;
 use Filament\Forms;
 use Filament\Resources\Form;
-use Filament\Forms\Components\live;
 use Filament\Resources\Get;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -59,9 +58,9 @@ class EmployeeResource extends Resource
                             ->preload()
                             ->label('State')
                             //This clear the field input when previois field changes
-                            ->afterStateUpdated(
-                                fn ($set) => $set('city_id', null)
-                            )
+                            // ->afterStateUpdated(
+                                // fn ($set) => $set('city_id', null)
+                            // )
                             ->required(),
                         //City
                         Forms\Components\Select::make('city_id')
@@ -129,7 +128,7 @@ class EmployeeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('country.name'),
                 Tables\Columns\TextColumn::make('state.name'),
-                Tables\Columns\TextColumn::make('city_name'),
+                Tables\Columns\TextColumn::make('city.name'),
                 Tables\Columns\TextColumn::make('department.name'),
                 Tables\Columns\TextColumn::make('first_name'),
                 Tables\Columns\TextColumn::make('last_name'),
