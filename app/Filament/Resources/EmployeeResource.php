@@ -134,8 +134,7 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('first_name'),
                 Tables\Columns\TextColumn::make('last_name'),
                 Tables\Columns\TextColumn::make('middle_name'),
-                Tables\Columns\TextColumn::make('address')
-                isTogglehidden,
+                Tables\Columns\TextColumn::make('address'),
                 Tables\Columns\TextColumn::make('zip_code'),
                 Tables\Columns\TextColumn::make('date_of_birth')
                     ->date(),
