@@ -52,14 +52,18 @@ class CountryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('code'),
-                Tables\Columns\TextColumn::make('phonecode'),
+                Tables\Columns\TextColumn::make('name')
+                ->searchable(),          
+                Tables\Columns\TextColumn::make('code')
+                ->searchable(),
+                Tables\Columns\TextColumn::make('phonecode')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                    ->dateTime()
+                   ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
-            ])
+            ])->defaultSort('name')
             ->filters([
                 //
             ])
@@ -85,7 +89,7 @@ class CountryResource extends Resource
             'index' => Pages\ListCountries::route('/'),
             'create' => Pages\CreateCountry::route('/create'),
             // 'view' => Pages\ViewCountry::route('/{record}'),
-            'edit' => Pages\EditCountry::route('/{record}/edit'),
+            // 'edit' => Pages\EditCountry::route('/{record}/edit'),
         ];
     }    
 }

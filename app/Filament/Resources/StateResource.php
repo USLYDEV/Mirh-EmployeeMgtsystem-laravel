@@ -59,7 +59,7 @@ class StateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('country.name')
+                Tables\Columns\TextColumn::make('Country_id')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                 ->label('State Name')
@@ -93,9 +93,9 @@ class StateResource extends Resource
     {
         return [
             'index' => Pages\ListStates::route('/'),
-            'create' => Pages\CreateState::route('/create'),
+            // 'create' => Pages\CreateState::route('/create'),
             // 'view' => Pages\ViewState::route('/{record}'),
-            'edit' => Pages\EditState::route('/{record}/edit'),
+            // 'edit' => Pages\EditState::route('/{record}/edit'),
         ];
     }    
 }

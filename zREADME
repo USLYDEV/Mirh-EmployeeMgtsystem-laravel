@@ -57,6 +57,13 @@ e.g Nigeria->list of state in Nigeria -> Oyo state -> list of city in oyo state
      ->options(fn ($get): Collection => State::query()
            ->where('country_id', $get('country_id'))
                                 ->pluck('name', 'id'))
+
+//This make data search from the DB,
+->searchable
+//This make is possible to hide table item and toggleable
+->toggleable(isToggledHiddenByDefault: true),
+
+
 //MODEL
 
 we call this public function for relation to work 
