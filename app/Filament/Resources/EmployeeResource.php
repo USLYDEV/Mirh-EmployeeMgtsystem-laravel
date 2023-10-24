@@ -7,13 +7,16 @@ use App\Filament\Resources\EmployeeResource\RelationManagers;
 use App\Models\City;
 use App\Models\Employee;
 use App\Models\State;
+use DeepCopy\Filter\Filter;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Get;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter as FiltersFilter;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -163,6 +166,22 @@ class EmployeeResource extends Resource
                 SelectFilter::make('Department')
                 ->relationship('department', 'name')
                 ->searchable(),
+    //             Filter::make ('created_at')
+    // ->form([
+    //     DatePicker::make('created_from'),
+    //     DatePicker::make('created_until'),
+    // ])
+    // ->query(function (Builder $query, array $data): Builder {
+    //     return $query
+    //         ->when(
+    //             $data['created_from'],
+    //             fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+    //         )
+    //         ->when(
+    //             $data['created_until'],
+    //             fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+    //         );
+    // })
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
