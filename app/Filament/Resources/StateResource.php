@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StateResource\Pages;
-
+use App\Filament\Resources\StateResource\RelationManagers\CityRelationManager;
 use App\Models\Country;
 use App\Models\State;
 use Filament\Forms;
@@ -94,7 +94,8 @@ class StateResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // CityRelationManager::class
+          
         ];
     }
     
@@ -102,10 +103,10 @@ class StateResource extends Resource
     {
         return [
             'index' => Pages\ListStates::route('/'),
-            // 'create' => Pages\CreateState::route('/create'),+
+            'create' => Pages\CreateState::route('/create'),
             
-            // 'view' => Pages\ViewState::route('/{record}'),
-            // 'edit' => Pages\EditState::route('/{record}/edit'),
+            'view' => Pages\ViewState::route('/{record}'),
+            'edit' => Pages\EditState::route('/{record}/edit'),
         ];
     }    
 }

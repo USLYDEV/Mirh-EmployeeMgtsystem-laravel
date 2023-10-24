@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources;
 use App\Filament\Resources\CountryResource\Pages;
+use App\Filament\Resources\CountryResource\RelationManagers\EmployeeRelationManager;
+use App\Filament\Resources\CountryResource\RelationManagers\StateRelationManager;
 use App\Models\Country;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -79,7 +81,8 @@ class CountryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StateRelationManager::class,
+            EmployeeRelationManager::class
         ];
     }
     
@@ -88,8 +91,8 @@ class CountryResource extends Resource
         return [
             'index' => Pages\ListCountries::route('/'),
             'create' => Pages\CreateCountry::route('/create'),
-            // 'view' => Pages\ViewCountry::route('/{record}'),
-            // 'edit' => Pages\EditCountry::route('/{record}/edit'),
+            'view' => Pages\ViewCountry::route('/{record}'),
+            'edit' => Pages\EditCountry::route('/{record}/edit'),
         ];
     }    
 }
