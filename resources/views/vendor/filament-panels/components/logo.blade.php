@@ -1,1 +1,0 @@
-<img src="{{asset('/images/mirhlogo.png')}}" alt="Mirh" class="h-10">

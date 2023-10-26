@@ -82,7 +82,7 @@ class CountryResource extends Resource
     {
         return [
             StateRelationManager::class,
-            EmployeeRelationManager::class
+            EmployeeRelationManager ::class
         ];
     }
     
