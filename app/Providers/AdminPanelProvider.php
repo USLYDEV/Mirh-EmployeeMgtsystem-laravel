@@ -18,12 +18,15 @@ public function panel (Panel $panel): panel
     ->colors([
 
     ])
+
     ->fonts('Inter')
     ->NavigationGroups([
         'Employee Management',
         'System Management',
         'User Management'
     ]);
+
     }
+
 
 }
