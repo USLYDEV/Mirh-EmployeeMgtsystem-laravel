@@ -22,7 +22,7 @@ class StateResource extends Resource
     protected static ?string $model = State::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-flag';
-    
+
     protected static ?string $navigationLabel = 'State';
 
     protected static ?string $modelLabel = 'State';
@@ -37,6 +37,7 @@ class StateResource extends Resource
             ->schema([
                 //This bring Item from other input in the DB
                 Forms\Components\Select::make('country_id')
+                // Forms\Components\Select::make('country.name')
                 //This is use in but does not work for my application--->RELATIONMANAGER
                 // ->relationship(name: 'country', TitleAttribute: 'name')
                 //I have to use this--->
@@ -61,8 +62,10 @@ class StateResource extends Resource
     {
         return $table
             ->columns([
+                // Tables\Columns\TextColumn::make('country.name'),
                 Tables\Columns\TextColumn::make('Country_id')
-                ->searchable(),
+                ->searchable()
+                ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                 ->label('State Name')
                 ->searchable()
@@ -92,13 +95,13 @@ class StateResource extends Resource
         ]);
 }
 
-    public static function getRelations(): array
-    {
-        return [
-        //    CitiesRelationManager::class
-          
-        ];
-    }
+public static function getRelations(): array
+{
+    return [
+        // CityRelationManager::class,
+       
+    ];
+}
     
     public static function getPages(): array
     {

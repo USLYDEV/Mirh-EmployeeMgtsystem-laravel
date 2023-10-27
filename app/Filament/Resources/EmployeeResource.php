@@ -19,6 +19,7 @@ use Filament\Tables;
 use Filament\Tables\Filters\Filter as FiltersFilter;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
 
@@ -30,6 +31,32 @@ class EmployeeResource extends Resource
 
 
     protected static ?string $navigationLabel = 'Employee';
+
+    //make global search possible for employee
+    protected static ?string $recordTitleAttribute ='first_name';
+
+    // global search array of data 
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['first_name', 'middle_name', 'last_name'];
+    }
+
+    public static function getGloballySearchResultDetails(Model $record):array
+    {
+       return[
+        'Country' => $record -> country->name
+       ];
+    }
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    protected static function getNavigationBadgeColor(): ?string
+{
+    return static::getModel()::count() < 10 ? 'warning' : 'danger';
+}
+
     protected static ?string $navigationGroup = 'Employee Management';
 
     public static function form(Form $form): Form
@@ -186,6 +213,7 @@ class EmployeeResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
