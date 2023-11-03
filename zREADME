@@ -94,3 +94,8 @@ public function department (): BelongsTo
        throw this into it:  if(Auth::user() && Auth::user()->is_admin)
 
        add is_admin into user model 
+
+       CHART
+       I use this for chart 
+
+       composer require flowframe/laravel-trend
