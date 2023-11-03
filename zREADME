@@ -81,3 +81,16 @@ public function department (): BelongsTo
             return $this-> belongsTo(Department::class);
         }
 
+
+
+        ADMIN/USER 
+        <command>
+        php artisan make:migration add_is_admin_to_users --table=users
+        
+        I added user column cll call is_admin
+
+        then make a middleware to check if user is admin 
+       cmd:  php artisan make:middleware VerifyIsAdmin
+       throw this into it:  if(Auth::user() && Auth::user()->is_admin)
+
+       add is_admin into user model 
