@@ -16,11 +16,11 @@ class VerifyIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {   
-        if(Auth::user() && Auth::user()->is_admin){
+        // if(!Auth::user() && Auth::user()->is_admin){
 
           return $next($request);
-    } 
+    // } 
     //   abort (403, 'You are not allowed to view this area');
-    return redirect('/app');
+    // return redirect('/app');
     }
 }
